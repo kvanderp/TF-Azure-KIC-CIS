@@ -46,27 +46,14 @@ resource "azurerm_network_security_group" "subnet" {
   }
 
 #   security_rule {
-#     name                       = "allow_HTTPS"
-#     description                = "Allow HTTPS access"
+#     name                       = "allow_app_http"
+#     description                = "Allow app HTTP access"
 #     priority                   = 120
 #     direction                  = "Inbound"
 #     access                     = "Allow"
 #     protocol                   = "Tcp"
 #     source_port_range          = "*"
-#     destination_port_range     = "443"
-#     source_address_prefix      = var.adminSrcAddr
-#     destination_address_prefix = "*"
-#   }
-
-#   security_rule {
-#     name                       = "allow_APP_HTTPS"
-#     description                = "Allow HTTPS access"
-#     priority                   = 130
-#     direction                  = "Inbound"
-#     access                     = "Allow"
-#     protocol                   = "Tcp"
-#     source_port_range          = "*"
-#     destination_port_range     = "8443"
+#     destination_port_range     = "31820"
 #     source_address_prefix      = var.adminSrcAddr
 #     destination_address_prefix = "*"
 #   }

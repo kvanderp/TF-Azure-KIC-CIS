@@ -1,0 +1,9 @@
+#cloud-config
+package_upgrade: true
+packages:
+  - snap
+runcmd:
+  - sudo snap install microk8s --classic --channel 1.19/stable
+  - sudo usermod -a -G microk8s ${username}
+  - sudo chown -f -R ${username} ~/.kube
+

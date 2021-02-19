@@ -6,18 +6,36 @@ resource "azurerm_virtual_network" "main" {
     address_space       = [var.vnet_cidr]
     resource_group_name = azurerm_resource_group.main.name
     location            = azurerm_resource_group.main.location
+
+    tags = {
+        purpose     = var.purpose
+        environment = var.environment
+        owner       = var.owner
+        group       = var.group
+        costcenter  = var.costcenter
+        application = var.application
+    }
 }
 
 # Create  Subnet
-resource "azurerm_subnet" "subnet_01" {
-  name                 = "subnet_01"
+resource "azurerm_subnet" "subnet" {
+  name                 = "subnet"
   virtual_network_name = azurerm_virtual_network.main.name
   resource_group_name  = azurerm_resource_group.main.name
-  address_prefixes     = [var.subnet_01_address_prefix]
+  address_prefixes     = [var.subnet_address_prefix]
+
+    tags = {
+        purpose     = var.purpose
+        environment = var.environment
+        owner       = var.owner
+        group       = var.group
+        costcenter  = var.costcenter
+        application = var.application
+    }
 }
 
-resource "azurerm_network_security_group" "subnet_01" {
-  name                = "${var.prefix}-subnet_01-nsg"
+resource "azurerm_network_security_group" "subnet" {
+  name                = "${var.prefix}-subnet-nsg"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
 
@@ -61,7 +79,7 @@ resource "azurerm_network_security_group" "subnet_01" {
 #   }
 
   tags = {
-    Name        = "${var.environment}-subnet_01-nsg"
+    purpose     = var.purpose
     environment = var.environment
     owner       = var.owner
     group       = var.group
@@ -70,7 +88,7 @@ resource "azurerm_network_security_group" "subnet_01" {
   }
 }
 
-resource "azurerm_subnet_network_security_group_association" "subnet_01" {
-  subnet_id                 = azurerm_subnet.subnet_01.id
-  network_security_group_id = azurerm_network_security_group.subnet_01.id
+resource "azurerm_subnet_network_security_group_association" "subnet" {
+  subnet_id                 = azurerm_subnet.subnet.id
+  network_security_group_id = azurerm_network_security_group.subnet.id
 }

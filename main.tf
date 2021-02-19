@@ -18,10 +18,15 @@ provider "azurerm" {
 
 # Create a Resource Group
 resource "azurerm_resource_group" "main" {
-  name     = "${var.prefix}_rg"
-  location = var.location
+    name     = "${var.prefix}_rg"
+    location = var.location
 
-  tags = {
-    environment = var.environment
-  }
+    tags = {
+        purpose     = var.purpose
+        environment = var.environment
+        owner       = var.owner
+        group       = var.group
+        costcenter  = var.costcenter
+        application = var.application
+    }
 }

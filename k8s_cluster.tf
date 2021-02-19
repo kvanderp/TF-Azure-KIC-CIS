@@ -2,6 +2,7 @@
 
 ### k8s nodes
 
+# create vm
 resource "azurerm_linux_virtual_machine" "node" {
     count                   = var.vm_count
     name                    = "${var.prefix}-${var.vm_name}-${count.index}"
@@ -26,8 +27,9 @@ resource "azurerm_linux_virtual_machine" "node" {
     admin_username = var.vm_admin
     disable_password_authentication = true
 
-    #custom_data = data.cloudinit_config.config.rendered
+    #cloud-init file
     custom_data = base64encode(data.template_file.cloudconfig.rendered)
+
 
     admin_ssh_key {
         username       = var.vm_admin
@@ -45,22 +47,9 @@ resource "azurerm_linux_virtual_machine" "node" {
     }
 }
 
-#Cloud-init
-# data "cloudinit_config" "config" {
-#   gzip          = true
-#   base64_encode = true
+### Cloud-init
 
-#   vars = {
-#       username = var.vm_admin
-#   }
-
-#   # Main cloud-config configuration file.
-#   part {
-#     content_type = "text/cloud-config"
-#     content      = file("${path.module}/scripts/node_cloudinit.yaml")
-#   }
-# }
-
+# Create file with vars from template in /scripts
 data "template_file" "cloudconfig" {
     template = file("${path.module}/scripts/node_cloudinit.yaml")
 
@@ -69,6 +58,9 @@ data "template_file" "cloudconfig" {
   }
 }
 
+### VM networking
+
+# Configure public IP
 resource "azurerm_public_ip" "node_public_ip" {
     count               = var.vm_count
     name                = "${var.prefix}-node_public_ip-${count.index}"
@@ -86,6 +78,7 @@ resource "azurerm_public_ip" "node_public_ip" {
     }
 }
 
+# Create NIC
 resource "azurerm_network_interface" "node_nic" {
     count               = var.vm_count
     name                = "${var.prefix}-node_nic-${count.index}"
@@ -111,6 +104,7 @@ resource "azurerm_network_interface" "node_nic" {
 
 }
 
+# Attach Security Group to NIC
 resource "azurerm_network_interface_security_group_association" "node_sga" {
     count = var.vm_count
     network_interface_id = azurerm_network_interface.node_nic[count.index].id

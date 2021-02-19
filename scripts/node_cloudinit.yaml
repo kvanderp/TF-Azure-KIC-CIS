@@ -8,3 +8,4 @@ runcmd:
   - sudo chown -f -R ${username} ~/.kube
   - microk8s status --wait-ready
   - microk8s enable dns
+  - alias kubectl="microk8s kubectl"

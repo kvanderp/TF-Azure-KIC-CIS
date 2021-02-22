@@ -3,9 +3,10 @@ package_upgrade: true
 packages:
   - snap
 runcmd:
-  - sudo snap install microk8s --classic --channel 1.19/stable
+  - sudo snap install microk8s --classic --channel 1.18/stable
   - sudo usermod -a -G microk8s ${username}
   - sudo chown -f -R ${username} ~/.kube
   - microk8s status --wait-ready
   - microk8s enable dns
-  - alias kubectl="microk8s kubectl"
+  - sudo chmod 766 /etc/bash.bashrc
+  - sudo echo "alias kubectl='microk8s kubectl'" >> /etc/bash.bashrc

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app
+  labels:
+    app: f5-demo-httpd
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: f5-demo-httpd
+  template:
+    metadata:
+      labels:
+        app: f5-demo-httpd
+        editor: vscode
+    spec:
+      containers:
+      - name: f5-demo-httpd
+        image: f5devcentral/f5-demo-httpd
+        ports:
+          - containerPort: 80

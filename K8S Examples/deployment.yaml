@@ -20,3 +20,4 @@ spec:
         image: f5devcentral/f5-demo-httpd
         ports:
           - containerPort: 80
+        resources:

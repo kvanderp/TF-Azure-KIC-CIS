@@ -59,7 +59,7 @@ resource "azurerm_network_security_group" "subnet" {
   }
 
   security_rule {
-    name                       = "allow_ingress_http"
+    name                       = "allow_ingress_https"
     description                = "Allow ingress HTTPS access"
     priority                   = 130
     direction                  = "Inbound"

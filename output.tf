@@ -17,17 +17,17 @@ output "node_ssh_connect" {
 #    value = data.template_file.cloudconfig.rendered
 #}
 
-output "Container_Registry" {
-    value = azurerm_container_registry.acr.name
-}
+# output "Container_Registry" {
+#     value = "${azurerm_container_registry.acr.name}.azurecr.io"
+# }
 
-data "azurerm_container_registry" "acr" {
-    name = azurerm_container_registry.acr.name
-    resource_group_name = azurerm_resource_group.main.name
-    depends_on = [ azurerm_container_registry.acr ]
-}
+# data "azurerm_container_registry" "acr" {
+#     name = azurerm_container_registry.acr.name
+#     resource_group_name = azurerm_resource_group.main.name
+#     depends_on = [ azurerm_container_registry.acr ]
+# }
 
-output "Container_admin" {
-    value = formatlist("Username: %s | Password: %s", data.azurerm_container_registry.acr.admin_username, data.azurerm_container_registry.acr.admin_password)
+# output "Container_admin" {
+#     value = formatlist("Username: %s | Password: %s", data.azurerm_container_registry.acr.admin_username, data.azurerm_container_registry.acr.admin_password)
   
-}
+# }

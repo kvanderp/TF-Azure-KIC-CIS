@@ -10,7 +10,7 @@ snap:
 runcmd:
   - sudo usermod -a -G microk8s ${username}
   - sudo usermod -aG docker ${username}
-  - sudo chown -f -R ${username} ~/.kube
+  - sudo chown -f -R ${username} /home/${username}/.kube
   - microk8s status --wait-ready
   - microk8s enable dns
   - microk8s enable helm3
@@ -18,3 +18,7 @@ runcmd:
   - sudo chmod 766 /etc/bash.bashrc
   - sudo echo "alias kubectl='microk8s kubectl'" >> /etc/bash.bashrc
   - sudo echo "alias helm='microk8s helm3'" >> /etc/bash.bashrc
+  - git -C /home/${username}/ clone https://github.com/projectcalico/calico.git
+  - sudo chown -R ${username} /home/${username}/calico
+  - git -C /home/${username}/ clone https://github.com/nginxinc/kubernetes-ingress/
+  - sudo chown -R ${username} /home/${username}/kubernetes-ingress

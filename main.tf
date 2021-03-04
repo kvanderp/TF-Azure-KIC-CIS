@@ -1,9 +1,9 @@
 # Main
 
 terraform {
-  required_version = "~> 0.12"
+  required_version = "~> 0.14.6"
   required_providers {
-      azurerm = "~> 2.47.0"
+      azurerm = "~> 2.49.0"
   }
 }
 

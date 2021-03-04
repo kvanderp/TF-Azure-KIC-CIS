@@ -50,7 +50,7 @@ variable "vm_admin" {
 }
 variable "vm_name" { default = "k8s"}
 variable "vm_count" { default = 1 }
-variable "vm_size" { default = "Standard_DS1_v2"}
+variable "vm_size" { default = "Standard_D2_v4"}
 
 # Tags
 variable purpose { default = "f5purpose" }

@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: demo-service-clusterip
+spec:
+  selector:
+    app: f5-demo-httpd
+  type: ClusterIP
+  ports:
+  - port: 80
+

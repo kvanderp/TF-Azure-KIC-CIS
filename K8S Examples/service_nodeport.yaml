@@ -1,11 +1,11 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name:  demo-service
+  name: demo-service-nodeport
 spec:
   selector:
-    app:  f5-demo-httpd
-  type:  NodePort
+    app: f5-demo-httpd
+  type: NodePort
   ports:
   - port:  80
     targetPort:  80

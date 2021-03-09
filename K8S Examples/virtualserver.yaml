@@ -15,7 +15,7 @@ spec:
   - path: /nginx
     action:
       return:
-        code: 301
         url: https://www.nginx.com
+        code: 301      
   - path: /hello
     route: demovirtualserverroute

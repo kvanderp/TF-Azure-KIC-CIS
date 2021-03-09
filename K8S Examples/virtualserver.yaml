@@ -1,0 +1,14 @@
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: f5demo
+spec:
+  host: demof5.example.com
+  upstreams:
+  - name: demo
+    service: demo-service-clusterip
+    port: 80
+  routes:
+  - path: /
+    action:
+      pass: demo

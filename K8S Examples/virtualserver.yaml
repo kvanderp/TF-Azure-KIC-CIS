@@ -14,7 +14,7 @@ spec:
       pass: demo
   - path: /nginx
     action:
-      return:
+      redirect:
         url: https://www.nginx.com
         code: 301      
   - path: /hello

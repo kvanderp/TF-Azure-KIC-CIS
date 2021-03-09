@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: demo-ingress
+spec:
+  ingressClassName: nginx 
+  rules:
+  - host: demof5.example.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: demo-service-clusterip
+          servicePort: 80

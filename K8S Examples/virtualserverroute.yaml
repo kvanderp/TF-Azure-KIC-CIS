@@ -1,0 +1,13 @@
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServerRoute
+metadata:
+  name: demovirtualserverroute
+spec:
+  host: '*.example.com'
+  subroutes:
+  - path: /hello
+    action:
+      return:
+        code: 200
+        type: text/plain
+        body: "Hello World\n"

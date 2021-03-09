@@ -3,7 +3,7 @@ kind: VirtualServer
 metadata:
   name: f5demo
 spec:
-  host: demof5.example.com
+  host: vsdemof5.example.com
   upstreams:
   - name: demo
     service: demo-service-clusterip
@@ -12,3 +12,10 @@ spec:
   - path: /
     action:
       pass: demo
+  - path: /nginx
+    action:
+      return:
+        code: 301
+        url: https://www.nginx.com
+  - path: /hello
+    route: demovirtualserverroute

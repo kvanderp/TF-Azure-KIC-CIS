@@ -3,7 +3,7 @@ kind: VirtualServerRoute
 metadata:
   name: demovirtualserverroute
 spec:
-  host: '*.example.com'
+  host: f5vsdemo.example.com
   subroutes:
   - path: /hello
     action:

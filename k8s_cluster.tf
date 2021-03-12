@@ -1,112 +1,112 @@
-#k8s cluster
+# #k8s cluster
 
-### k8s nodes
+# ### k8s nodes
 
-# create vm
-resource "azurerm_linux_virtual_machine" "node" {
-    count                   = var.vm_count
-    name                    = "${var.prefix}-${var.vm_name}-${count.index}"
-    location                = var.location
-    resource_group_name     = azurerm_resource_group.main.name
-    network_interface_ids   = [azurerm_network_interface.node_nic[count.index].id]
-    size                    = var.vm_size
+# # create vm
+# resource "azurerm_linux_virtual_machine" "node" {
+#     count                   = var.vm_count
+#     name                    = "${var.prefix}-${var.vm_name}-${count.index}"
+#     location                = var.location
+#     resource_group_name     = azurerm_resource_group.main.name
+#     network_interface_ids   = [azurerm_network_interface.node_nic[count.index].id]
+#     size                    = var.vm_size
 
-    os_disk {
-        caching           = "ReadWrite"
-        storage_account_type = "StandardSSD_LRS"
-    }
+#     os_disk {
+#         caching           = "ReadWrite"
+#         storage_account_type = "StandardSSD_LRS"
+#     }
 
-    source_image_reference {
-        publisher = "Canonical"
-        offer     = "UbuntuServer"
-        sku       = "18.04-LTS"
-        version   = "latest"
-    }
+#     source_image_reference {
+#         publisher = "Canonical"
+#         offer     = "UbuntuServer"
+#         sku       = "18.04-LTS"
+#         version   = "latest"
+#     }
 
-    computer_name  = "${var.vm_name}-${count.index}"
-    admin_username = var.vm_admin
-    disable_password_authentication = true
+#     computer_name  = "${var.vm_name}-${count.index}"
+#     admin_username = var.vm_admin
+#     disable_password_authentication = true
 
-    #cloud-init file
-    custom_data = base64encode(data.template_file.cloudconfig.rendered)
+#     #cloud-init file
+#     custom_data = base64encode(data.template_file.cloudconfig.rendered)
 
 
-    admin_ssh_key {
-        username       = var.vm_admin
-        public_key     = file("~/.ssh/id_rsa.pub")
-    }
+#     admin_ssh_key {
+#         username       = var.vm_admin
+#         public_key     = file("~/.ssh/id_rsa.pub")
+#     }
 
-    tags = {
-        name = "Server ${var.vm_name}-${count.index}"
-        purpose     = var.purpose
-        environment = var.environment
-        owner       = var.owner
-        group       = var.group
-        costcenter  = var.costcenter
-        application = var.application
-    }
-}
+#     tags = {
+#         name = "Server ${var.vm_name}-${count.index}"
+#         purpose     = var.purpose
+#         environment = var.environment
+#         owner       = var.owner
+#         group       = var.group
+#         costcenter  = var.costcenter
+#         application = var.application
+#     }
+# }
 
-### Cloud-init
+# ### Cloud-init
 
-# Create file with vars from template in /scripts
-data "template_file" "cloudconfig" {
-    template = file("${path.module}/scripts/node_cloudinit.yaml")
+# # Create file with vars from template in /scripts
+# data "template_file" "cloudconfig" {
+#     template = file("${path.module}/scripts/node_cloudinit.yaml")
 
-    vars = {
-      username = var.vm_admin
-  }
-}
+#     vars = {
+#       username = var.vm_admin
+#   }
+# }
 
-### VM networking
+# ### VM networking
 
-# Configure public IP
-resource "azurerm_public_ip" "node_public_ip" {
-    count               = var.vm_count
-    name                = "${var.prefix}-node_public_ip-${count.index}"
-    location            = var.location
-    resource_group_name = azurerm_resource_group.main.name
-    allocation_method   = "Dynamic"
+# # Configure public IP
+# resource "azurerm_public_ip" "node_public_ip" {
+#     count               = var.vm_count
+#     name                = "${var.prefix}-node_public_ip-${count.index}"
+#     location            = var.location
+#     resource_group_name = azurerm_resource_group.main.name
+#     allocation_method   = "Dynamic"
 
-    tags = {
-        purpose     = var.purpose
-        environment = var.environment
-        owner       = var.owner
-        group       = var.group
-        costcenter  = var.costcenter
-        application = var.application
-    }
-}
+#     tags = {
+#         purpose     = var.purpose
+#         environment = var.environment
+#         owner       = var.owner
+#         group       = var.group
+#         costcenter  = var.costcenter
+#         application = var.application
+#     }
+# }
 
-# Create NIC
-resource "azurerm_network_interface" "node_nic" {
-    count               = var.vm_count
-    name                = "${var.prefix}-node_nic-${count.index}"
-    location            = var.location
-    resource_group_name = azurerm_resource_group.main.name
+# # Create NIC
+# resource "azurerm_network_interface" "node_nic" {
+#     count               = var.vm_count
+#     name                = "${var.prefix}-node_nic-${count.index}"
+#     location            = var.location
+#     resource_group_name = azurerm_resource_group.main.name
 
-    ip_configuration {
-        name = "node_nic_conf-${count.index}"
-        subnet_id = azurerm_subnet.subnet.id
-        private_ip_address_allocation = "Dynamic"
-        public_ip_address_id = azurerm_public_ip.node_public_ip[count.index].id
+#     ip_configuration {
+#         name = "node_nic_conf-${count.index}"
+#         subnet_id = azurerm_subnet.subnet.id
+#         private_ip_address_allocation = "Dynamic"
+#         public_ip_address_id = azurerm_public_ip.node_public_ip[count.index].id
 
-    }
+#     }
 
-    tags = {
-        purpose     = var.purpose
-        environment = var.environment
-        owner       = var.owner
-        group       = var.group
-        costcenter  = var.costcenter
-        application = var.application
-    }
+#     tags = {
+#         purpose     = var.purpose
+#         environment = var.environment
+#         owner       = var.owner
+#         group       = var.group
+#         costcenter  = var.costcenter
+#         application = var.application
+#     }
 
-}
+# }
 
-# Attach Security Group to NIC
-resource "azurerm_network_interface_security_group_association" "node_sga" {
-    count = var.vm_count
-    network_interface_id = azurerm_network_interface.node_nic[count.index].id
-    network_security_group_id = azurerm_network_security_group.subnet.id
-}
+# # Attach Security Group to NIC
+# resource "azurerm_network_interface_security_group_association" "node_sga" {
+#     count = var.vm_count
+#     network_interface_id = azurerm_network_interface.node_nic[count.index].id
+#     network_security_group_id = azurerm_network_security_group.subnet.id
+# }

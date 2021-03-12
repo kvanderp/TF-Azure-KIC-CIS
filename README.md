@@ -80,8 +80,9 @@ G --> I
 H --> I
 I --> D
 F --> I
-
 ```
+
+![enter image description here](%5B!%5B%5D%28https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggQlRcbiAgICAgICAgQVtWbTFdIFxuICAgICAgICBDe25pYzF9XG4gICAgICAgIEQoU3VibmV0KVxuICAgICAgICBCKFB1YmxpY0lQMSlcbiAgICAgICAgRigoU2VjdXJpdHkgR3JvdXApKVxuICAgICAgICBFKE5ldHdvcmspXG4gICAgICAgIEdbVm0yXVxuICAgICAgICBIKFB1YmxpY0lQMilcbiAgICAgICAgSXtuaWMyfVxuXG4gICAgICAgIEEgLS0-IENcbiAgICAgICAgQiAtLT4gQ1xuICAgICAgICBDIC0tPiBEXG4gICAgICAgIEQgLS0-IEVcbiAgICAgICAgRiAtLT4gQ1xuICAgICAgICBGIC0tPiBEXG4gICAgICAgIEcgLS0-IElcbiAgICAgICAgSCAtLT4gSVxuICAgICAgICBJIC0tPiBEXG4gICAgICAgIEYgLS0-IElcbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9%29%5D%28https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggQlRcbiAgICAgICAgQVtWbTFdIFxuICAgICAgICBDe25pYzF9XG4gICAgICAgIEQoU3VibmV0KVxuICAgICAgICBCKFB1YmxpY0lQMSlcbiAgICAgICAgRigoU2VjdXJpdHkgR3JvdXApKVxuICAgICAgICBFKE5ldHdvcmspXG4gICAgICAgIEdbVm0yXVxuICAgICAgICBIKFB1YmxpY0lQMilcbiAgICAgICAgSXtuaWMyfVxuXG4gICAgICAgIEEgLS0-IENcbiAgICAgICAgQiAtLT4gQ1xuICAgICAgICBDIC0tPiBEXG4gICAgICAgIEQgLS0-IEVcbiAgICAgICAgRiAtLT4gQ1xuICAgICAgICBGIC0tPiBEXG4gICAgICAgIEcgLS0-IElcbiAgICAgICAgSCAtLT4gSVxuICAgICAgICBJIC0tPiBEXG4gICAgICAgIEYgLS0-IElcbiIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9%29)
  
 The *VMs* are reachable on their associated public ip (*which is unknown before deployment*), and the *security group* sets what ip and port is allowed to connect. Terraform also shows this as an output, along with the ssh command to connect to each VM.
 > This setup is just for a demo and should not be used in a production environment!

@@ -51,6 +51,7 @@ variable "vm_admin" {
 variable "vm_name" { default = "k8s"}
 variable "vm_count" { default = 1 }
 variable "vm_size" { default = "Standard_D2_v4"}
+variable "admin_ssh_public_key" { default = "~/.ssh/id_rsa.pub"}
 
 # Tags
 variable purpose { default = "f5purpose" }

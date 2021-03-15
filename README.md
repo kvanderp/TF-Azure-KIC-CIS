@@ -33,19 +33,19 @@ This is a workshop intended to understand k8s and how nginx ingress is installed
 		sp_client_secret 	=  "XXXX"
 		sp_tenant_id 		=  "XXXX"
 
-		location 			=  "northeurope" 	# Azure Region.
+		location	 	=  "northeurope" 	# Azure Region.
 		adminSrcAddr 		=  "0.0.0.0/0"		# Allowed SSH. 
-		vm_count 			=  2				# Number of VMs for cluster.
+		vm_count 		=  2			# Number of VMs for cluster.
 
 		# Prefix for objects being created, preferrably use your initials.
-		prefix 				=  "AGY-k8s-test"
+		prefix 			=  "AGY-k8s-test"
 
 		# Tags
-		purpose 			=  "Prototype for demo"
+		purpose 		=  "Prototype for demo"
 		environment 		=  "dev"  #ex. dev/staging/prod
-		owner 				=  "AGY"
-		group 				=  "North-East"
-		costcenter 			=  "f5EMEA"
+		owner 			=  "AGY"
+		group 			=  "North-East"
+		costcenter 		=  "f5EMEA"
 		application 		=  "k8s setup demo"
 		```
 		 

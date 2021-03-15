@@ -6,6 +6,8 @@
 
 `helm repo add nginx-stable https://helm.nginx.com/stable`
 
+`helm repo update`
+
 `helm install my-release nginx-stable/nginx-ingress`
 
 ### Setup KIC Plus
@@ -21,8 +23,6 @@ helm install my-release nginx-stable/nginx-ingress \
 --set controller.nginxStatus.allowCidrs=0.0.0.0/0
 ```
 
-### Setup KIC Plus & NAP
-
-## Update
-
 ## Uninstall
+
+`helm uninstall my-release`

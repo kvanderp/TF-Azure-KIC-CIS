@@ -81,8 +81,9 @@ Upon creation, we are using *cloud-init* in order to setup and install tools on 
  - enables the modules `dns`, `helm3` and `registry` for `microk8s` 
  - Adds the alias `kubectl=microk8s kubectl`
  - Adds the alias `helm=microk8s helm3`
- - Clones the repository https://github.com/projectcalico/calico.git
- - Clones the repository https://github.com/nginxinc/kubernetes-ingress/
+ - Clones the repository https://github.com/projectcalico/calico
+ - Clones the repository https://github.com/nginxinc/kubernetes-ingress
+ - Clones the repository https://github.com/Gyllenhammar/TF-Azure-KIC-CIS
 
 >The script can take some time, *approx. 5 minutes* and the user-group commands require a relog to take effect. 
 

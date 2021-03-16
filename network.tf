@@ -71,6 +71,19 @@ resource "azurerm_network_security_group" "subnet" {
     destination_address_prefix = "*"
   }
 
+  security_rule {
+    name                       = "allow_ingress_nodeport"
+    description                = "Allow ingress nodeport access"
+    priority                   = 140
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "30080"
+    source_address_prefix      = var.adminSrcAddr
+    destination_address_prefix = "*"
+  }
+
   tags = {
     purpose     = var.purpose
     environment = var.environment

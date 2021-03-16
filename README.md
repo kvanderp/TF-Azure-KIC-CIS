@@ -22,7 +22,7 @@ This is a workshop intended to understand k8s and how nginx ingress is installed
 	 - cd into the directory
 2. Setup Terraform
 	-  Initilize terraform and all its modules with `terraform init`
-	- Now we have to create a file called `<some_name>.tfvars`
+	- Now we have to create a file called `terraform.tfvars`
 		 >This file contains variable values that are specific to your deployment, you can look in the `variables.tf` file to see what the variables are. 
 		 
 		 This file need to be populated with the Azure Service principal values, along with some other deployment specific ones. Here is an example

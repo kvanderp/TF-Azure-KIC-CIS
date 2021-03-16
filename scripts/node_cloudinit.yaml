@@ -22,5 +22,5 @@ runcmd:
   - sudo chown -R ${username} /home/${username}/calico
   - git -C /home/${username}/ clone https://github.com/nginxinc/kubernetes-ingress/
   - sudo chown -R ${username} /home/${username}/kubernetes-ingress
-  - git -C /home/${username}/ clone https://github.com/Gyllenhammmar/TF-Azure-KIC-CIS
+  - git -C /home/${username}/ clone https://github.com/Gyllenhammmar/TF-Azure-KIC-CIS.git
   - sudo chown -R ${username} /home/${username}/TF-Azure-KIC-CIS

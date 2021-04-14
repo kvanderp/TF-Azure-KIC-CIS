@@ -51,12 +51,11 @@ This is a workshop intended to understand k8s and how nginx ingress is installed
 		 
 	- Now we can see what will be changed in our environment with `terraform plan` and apply it with `terraform apply`. After a couple minutes the environment should be up.
 
-	> for windows users
-	Generate the Keys using the below command in the windows cli, if not previously created under the folder `C:\\Users\\<username>\\.ssh\\id_rsa.pub` :
-	`ssh-keygen -m PEM -t rsa -b 4096`
-	Edit the `K8s_cluster.tf` file with the windows path to the generated key -  `public_key = file("C:\\Users\\<username>\\.ssh\\id_rsa.pub")`
- 
-	Before sshing into the Vm’s, if you are using putty then specify the private key under Authentication parameters / Private key file for authentication
+	> If you get an error regarding missing public key, generate one with `ssh-keygen -m PEM -t rsa -b 4096`
+
+	> For Windows users
+	Edit the `K8s_cluster.tf` file with the windows path to the generated key - `public_key = file("C:\\Users\\<username>\\.ssh\\id_rsa.pub")`
+ 	Before sshing into the Vm’s, if you are using putty then specify the private key under Authentication parameters / Private key file for authentication
 
 ## Environment 
 

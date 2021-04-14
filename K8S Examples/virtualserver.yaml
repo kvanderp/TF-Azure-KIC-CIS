@@ -2,12 +2,15 @@ apiVersion: k8s.nginx.org/v1
 kind: VirtualServer
 metadata:
   name: f5demo
+  namespace: f5demo-ns
 spec:
   host: vsdemof5.example.com
   upstreams:
   - name: demo
     service: demo-service-clusterip
     port: 80
+    lb-method: least_conn
+    
   routes:
   - path: /
     action:
@@ -18,4 +21,4 @@ spec:
         code: 301 
         url: https://www.nginx.com        
   - path: /hello
-    route: demovirtualserverroute
+    route: vsroute-ns/demovirtualserverroute

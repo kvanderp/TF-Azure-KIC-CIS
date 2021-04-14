@@ -2,6 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: demo-service-clusterip
+  namespace: f5demo-ns
 spec:
   selector:
     app: f5-demo-httpd

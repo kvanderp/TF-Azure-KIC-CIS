@@ -2,6 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: status-service-nodeport
+  namespace: kic-ns
 spec:
   selector:
     app: my-release-nginx-ingress

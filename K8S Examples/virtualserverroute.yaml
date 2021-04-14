@@ -2,8 +2,9 @@ apiVersion: k8s.nginx.org/v1
 kind: VirtualServerRoute
 metadata:
   name: demovirtualserverroute
+  namespace: vsroute-ns
 spec:
-  host: f5vsdemo.example.com
+  host: vsdemof5.example.com
   subroutes:
   - path: /hello
     action:

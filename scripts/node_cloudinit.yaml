@@ -15,6 +15,7 @@ runcmd:
   - microk8s enable dns
   - microk8s enable helm3
   - microk8s enable registry
+  - microk8s enable metrics-server
   - sudo chmod 766 /etc/bash.bashrc
   - sudo echo "alias kubectl='microk8s kubectl'" >> /etc/bash.bashrc
   - sudo echo "alias helm='microk8s helm3'" >> /etc/bash.bashrc

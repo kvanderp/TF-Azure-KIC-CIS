@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: f5demo-ns
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kic-ns 
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: vsroute-ns 

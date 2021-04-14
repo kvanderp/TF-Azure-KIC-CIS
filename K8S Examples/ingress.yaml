@@ -3,12 +3,15 @@ kind: Ingress
 metadata:
   name: demo-ingress
 spec:
-  ingressClassName: nginx 
+  # ingressClassName: nginx
   rules:
   - host: demof5.example.com
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: demo-service-clusterip
-          servicePort: 80
+          service:
+            name: demo-service-clusterip
+            port:
+              number: 80

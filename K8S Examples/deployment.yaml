@@ -1,11 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demo-app
-  labels:
-    app: f5-demo-httpd
+  name: f5-demo-httpd
+  namespace: f5demo-ns
 spec:
-  replicas: 3
   selector:
     matchLabels:
       app: f5-demo-httpd
@@ -13,11 +11,13 @@ spec:
     metadata:
       labels:
         app: f5-demo-httpd
-        editor: vscode
     spec:
       containers:
       - name: f5-demo-httpd
-        image: f5devcentral/f5-demo-httpd
-        ports:
-          - containerPort: 80
+        image: f5devcentral/f5-demo-httpd:nginx
         resources:
+          limits:
+            memory: "128Mi"
+            cpu: "50m"
+        ports:
+        - containerPort: 80

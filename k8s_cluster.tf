@@ -33,7 +33,7 @@ resource "azurerm_linux_virtual_machine" "node" {
 
     admin_ssh_key {
         username       = var.vm_admin
-        public_key     = file("~/.ssh/id_rsa.pub")
+        public_key     = file("~/.ssh/id_rsa.pub") # for windows use format file("C:\\Users\\<username>\\.ssh\\id_rsa.pub")
     }
 
     tags = {

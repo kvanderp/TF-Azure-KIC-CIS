@@ -10,11 +10,15 @@ spec:
     service: demo-service-clusterip
     port: 80
     lb-method: least_conn
-    
   routes:
   - path: /
     action:
       pass: demo
+#    errorPages:
+#    - codes: [404]
+#      return:
+#        code: 200
+#        body: "Original resource not found, but success!"
   - path: /nginx
     action:
       redirect:

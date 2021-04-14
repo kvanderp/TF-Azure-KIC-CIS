@@ -10,5 +10,5 @@ spec:
     action:
       return:
         code: 200
-        type: text/plain
-        body: "Hello World\n"
+        type: text/html
+        body: "<img src=https://miro.medium.com/max/3840/1*U-R58ahr5dtAvtSLGK2wXg.png />\n"
